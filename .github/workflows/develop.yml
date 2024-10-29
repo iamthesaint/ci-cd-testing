@@ -1,4 +1,4 @@
-name: Lint and Test Workflow for Develop
+name: Test Workflow for Develop
 
 on:
   pull_request:
