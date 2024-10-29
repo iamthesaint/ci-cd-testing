@@ -1,143 +1,83 @@
-# 19 CI-CD: GitHub Actions CI/CD Setup
+# Tech Quiz CI/CD Check Tests & Render Deployment
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## Your Task
+[Take the Python Tech Quiz!](https://ci-cd-testing-72de.onrender.com)
 
-As applications scale and develop, developers want to ensure that certain quality checks are met prior to merging to important branches; thus, you'll want to familiarize yourself with Continuous Integration (CI) and Continuous Deployment (CD) that are common practices used to ensure consistency, quality, and deployment of latest code once all checks have been met and merged to `main`.
+## Table of Contents
 
-Your task is to create a CI/CD pipeline using GitHub Actions to run the component tests via Cypress when a Pull Request is made to the `develop` branch, and the application is deployed when code is merged from `develop` to the `main` branch.
+- [Description](#description)
+- [Visuals](#visuals)
+- [Installation](#installation)
+- [Technologies Used](#technologies-used)
+- [Key Features](#key-features)
+- [Usage](#usage)
+- [Support](#support)
+- [Contributing](#contributing)
+- [License](#license)
 
-## User Story
+## Description
 
-```md
-AS A developer looking to integrate a pipeline in a codebase for continuous integration and deployment, 
-I WANT to create a GitHub Action that will follow best practices by running test cases when a Pull Request is made to the develop branch
-SO THAT I can ensure that all code integrations are clean and pass the proper requirements.
+Tech Quiz is a web application that tests a users' knowledge of Python through a series of 10 randomly generated questions. Upon completion, the user is provided a score (#/10) and the option to re-take the quiz with potentially different questions, in a non-identical order. This app was built with Typescript, React and Node.js; also utilizing MongoDB for a scalable data/question management system.
 
-AS A developer looking to deploy the application automatically to Render when code is merged from develop to main,
-I WANT to create a GitHub Action that will run when the code is merged to main and automatically deploys to Render
-SO THAT the application is constantly updated when major releases are made to the main branch.
-```
+This repo contains additonal code tailored to Github Actions workflow for the app. You can find the parent repo for Tech Quiz [here](https://github.com/iamthesaint/tech-quiz).
+Specifically, this repo provides developers with automatically triggered Github Actions that ensure Cypress tests pass when pushing new code to the Develop branch, and when the passing code is merged into the Main branch, the Render web service will automatically redeploy with the updates.
 
-## Acceptance Criteria
+## Visuals
+*Deploy To Render Github Action*
 
-```md
-GIVEN a fullstack application for a web developer,
-WHEN I upload new features to the application
-THEN I should be making Pull Requests to a develop branch first
-WHEN I create a Pull Request to a develop branch
-THEN I should be executing a GitHub Action that checks the Cypress component tests
-WHEN I see that the tests pass on GitHub Action
-THEN I should see those test results on GitHub Action and merge the code
-WHEN I push the code from the develop branch to the main branch
-THEN I should see that another GitHub Action triggers and should automatically deploy to Render
-```
+<img width="2022" alt="Screenshot 2024-10-29 at 5 27 37 PM" src="https://github.com/user-attachments/assets/48fb6a99-734a-4950-9c24-f21482fca712">
 
-## Mock-Up
+*Checking Tests Github Action*
 
-Your GitHub Actions for tests should look similar to the image below:
+<img width="2022" alt="Screenshot 2024-10-29 at 5 28 20 PM" src="https://github.com/user-attachments/assets/b7de3903-2a81-4c69-9229-3342b2b78c8a">
 
-![GitHub Actions Cypress Test.](./Assets/19-Actions-Cypress-Tests.png)
+## Installation
 
-Your GitHub Actions for deployments should look similar to the image below:
+**Pre-reqs:** MongoDB installed locally with Mongoose, or an instance on MongoDB Atlas and Node.js packages. Cypress used for component and end-to-end testing, if testing is desired.
+Github Actions YAML files used to provide TQ with branch protection.
 
-![GitHub Actions Render Deploy.](./Assets/19-Actions-Render-Deploy.png)
+## Technologies Used
 
-## Getting Started
+- **Client-side:** React with Typescript and JSX Components
+- **Server-side:** Node.js with Express, Typescript, and Mongoose
+- **Database:** MongoDB for storing quiz question data
+- **Testing:** Cypress for e2e and component testing
+- **Branch Protection:** Github Actions
 
-You'll first upload the content inside the `Develop` folder to a GitHub Repository. 
+## Key Features
 
-You'll then deploy the application via [Render and MongoDB](https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-render-and-mongodb-atlas).
+- **Randomized Questions:** Each quiz session generates a set of 10 questions in a different order.
+- **Dynamic Question Flow:** Users are brought through the test questions quickly and smoothly without distraction.
+- **Scoring:** Users receive a score out of 10 at the end of each quiz.
+- **Retake Option:** Users can retake the quiz with a new set of questions.
+- **Responsive Design:** The app is fully responsive and works on various devices via React.
+- **User-Friendly Interface:** Simple and intuitive interface for seamless user experience.
+- **Scalable Backend:** Utilizes MongoDB for efficient data management and scalability with a database that allows for flexible storage. MongoDB also provides an easy way for app-creators to continue adding questions as the application grows.
+- **Comprehensive Testing:** Includes end-to-end and component testing with Cypress, ensuring the user journey is seamless and bug-free.
 
-Once you see the application has been deployed, you'll navigate to the Settings option and turn off Auto-Deploy.
+## Usage
 
-![Render image of auto deploy and hook](./Assets/19-Render-Settings.png)
+- **Start the app:** 
+```npm run start``` after seeding the database (```npm run seed```) with questions provided by the MongoDB collection.
+- **Start the quiz:**
+on the homepage of the app, you are greeted with a 'Start Quiz' button. Once clicked, the first question will be displayed.
+- **Answer the questions:**
+each question will take up an entire page with a list of possible answers. To select an answer, choose the blue number next to your answer. Once an option is selected, the next question will be displayed.
+- **View your score:** 
+when ten questions have been answered, your score -- the number of questions correct out of 10 -- will be visible.
+- **Retake the quiz:**
+if you are unhappy with your score, require more practice, or simply want to test your knowledge on another set of questions, choose the 'Retake Quiz' button and you will be presented with the first of a new set of questions.
 
-Copy the `Deploy hook` URL as you will need it to properly configure GitHub Actions to deploy to Render.
+## Support
 
-Next, create a `develop` branch (either on GitHub directly or via command-line) where all feature branches will be merged to.
+For questions, comments, or a cup of coffee -- reach out to me at stephenie2@me.com, or my Github: [iamthesaint](https://github.com/iamthesaint)
 
-> **note** Your feature branches should always be merged to the `develop` branch. Only the `develop` branch should be merged to the `main` branch.
+## Contributing
 
-You will want to have two separate `YAML` files: one configured to execute GitHub Actions for tests when a Pull Request is made to the `develop` branch and the other configured to execute GitHub Actions to automatically deploy to Render when `develop` is merged to `main` branch.
+If you wish to contribute to Tech Quiz, please fork the repo to create your additions/modifications. Keep in mind, you will require a .env file with the MONGODB_URI environment variable. In order to apply your changes to the deployed application, your code will need to pass the provided Cypress Tests, automatically triggered via pull-requests to Develop.
 
-Use the following resources below:
+## License
 
-Resources:
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-* [Render Deploy Hooks](https://docs.render.com/deploy-hooks)
-
-* [Render API Key](https://docs.render.com/api)
-
-* [GitHub Repo Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
-
-* [Main and Develop Branches](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
-
-## Grading Requirements
-
-> **note** If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count toward your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
-
-This Challenge is graded based on the following criteria:
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria plus the following:
-
-  * The GitHub repository must have both a `main` branch and a `develop` branch and use `feature` branches to submit Pull Requests.
-
-  * A GitHub Action must trigger when a Pull Request is submitted to a `develop` branch and the Action must execute the Cypress component tests.
-
-  * All Cypress component tests must pass.
-
-  * A GitHub Action must trigger when a Pull Request is submitted and merged to the `main` branch and the Action must automatically deploy the application to Render.
-
-  * The application must be deployed to Render.
-
-### Application Quality: 15%
-
-* User experience is intuitive and easy to navigate.
-
-* User interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains high-quality README file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a README that describes the project.
-
----
-
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file in the repo for details.
