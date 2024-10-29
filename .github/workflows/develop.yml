@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - develop
-      - feature/*
+      - staging
 
 jobs:
   test:
@@ -25,6 +25,11 @@ jobs:
 
       - name: Run Build
         run: npm run build
+
+      - name: Run Seed
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: npm run seed
 
       - name: Run Tests
         run: npm run test
