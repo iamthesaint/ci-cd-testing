@@ -17,6 +17,7 @@ jobs:
       - name: Checking Tests
         run: |
             npm install
+            npm start & npx wait-on http://localhost:3001
             npm run test
 
       - name: Deploy To Render
