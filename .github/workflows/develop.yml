@@ -1,9 +1,9 @@
-name: Test Workflow for Main
+name: Test Workflow for Develop
 
 on:
   pull_request:
     branches:
-      - main
+      - develop
 
 jobs:
   test:
@@ -20,6 +20,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        
+
       - name: Run tests
         run: npm run test
