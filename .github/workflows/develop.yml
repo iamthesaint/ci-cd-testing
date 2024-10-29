@@ -1,16 +1,17 @@
-name: Test Workflow for Develop
+name: Lint and Test Workflow for Develop
 
 on:
   pull_request:
     branches:
       - develop
+      - feature/*
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v1
 
       - name: Use Node.js 21.x
@@ -18,8 +19,14 @@ jobs:
         with:
           node-version: 21.x
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: Run tests
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Run Build
+        run: npm run build
+
+      - name: Run Tests
         run: npm run test
