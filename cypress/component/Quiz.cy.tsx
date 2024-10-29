@@ -1,11 +1,11 @@
 // component tests for the quiz component
 import Quiz from '../../client/src/components/Quiz';
+import { mount } from 'cypress/react';
 
 // test initial rendering of the quiz component and the start button
 describe("<Quiz />", () => {
   it("should render the start quiz button on page load", () => {
-    // mount the quiz component
-    cy.mount(<Quiz />);
+    mount(<Quiz />);
     // check that the start button exists
     cy.contains("Start Quiz").should("exist");
   });
@@ -13,7 +13,7 @@ describe("<Quiz />", () => {
   // tests for clicking the start quiz button and displaying the first question
   it("should display the first question after clicking the start quiz button", () => {
     // mount the quiz component
-    cy.mount(<Quiz />);
+    mount(<Quiz />);
     cy.intercept("GET", "/api/questions/random", { fixture: "questions.json" }).as(
       "getRandomQuestions"
     );
@@ -28,7 +28,7 @@ describe("<Quiz />", () => {
   // tests navigating between questions
   it("should navigate to the next question after an answer is selected", () => {
     // mount the quiz component
-    cy.mount(<Quiz />);
+    mount(<Quiz />);
     cy.intercept("GET", "/api/questions/random", { fixture: "questions.json" }).as(
       "getRandomQuestions"
     );
