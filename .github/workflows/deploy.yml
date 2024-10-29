@@ -9,9 +9,9 @@ on:
 
 jobs:
   ci:
-  name: Deploy To Render
-  runs-on: ubuntu-latest
-  steps:
+    name: Deploy To Render
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v3
       - name: Test
         run: |
