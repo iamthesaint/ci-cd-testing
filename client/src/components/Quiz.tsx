@@ -66,7 +66,7 @@ const Quiz = () => {
         </button>
       </div>
     );
-  }
+  };
 
   if (questions.length === 0) {
     return (
@@ -76,7 +76,7 @@ const Quiz = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const currentQuestion = questions[currentQuestionIndex];
 
