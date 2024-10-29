@@ -12,4 +12,4 @@ export const getRandomQuestions = async (_req: Request, res: Response) => {
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
-};
+};  
