@@ -9,12 +9,11 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
-    
-    steps:
+  name: Deploy To Render
+  runs-on: ubuntu-latest
+  steps:
       - uses: actions/checkout@v3
-
-      - name: Checking Tests
+      - name: Test
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         run: |
@@ -23,10 +22,9 @@ jobs:
             npm run seed
             npm run start
             npm run test
-
-      - name: Deploy To Render
+      - name: Deploy
         if: github.ref == 'refs/heads/main'
         env:
-          DEPLOY_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
-          curl "$DEPLOY_URL"
+          curl "$deploy_url"
