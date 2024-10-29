@@ -52,7 +52,7 @@ const Quiz = () => {
         </button>
       </div>
     );
-  }
+  };
 
   if (quizCompleted) {
     return (
